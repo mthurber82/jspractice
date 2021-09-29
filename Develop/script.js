@@ -7,15 +7,26 @@ function writePassword() {
   var passwordText = document.querySelector("#password");
   var length = 8,
   charset = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789",
-  retVal = "";
+  var alpha = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+  var numbers = "0123456789";
+  var symbols = "!@#$%^&*_-+=";
+  password = "";
 for (var i = 0, n = charset.length; i < length; ++i) {
-  retVal += charset.charAt(Math.floor(Math.random() * n));
+  password += charset.charAt(Math.floor(Math.random() * n));
 }
-return retVal;
+return password;
 
-passwordText.value = password;
+};
 
-}
+// Display Password
+document.getElementById("displaypassword").value = (password);
+
+};
 
 // Add event listener to generate button
-generateBtn.addEventListener("click", writePassword);
+generateBtn.addEventListener("click", () => {
+  let characters = alpha;
+  incNumbers.checked ? (characters += numbers) : "";
+  incSymbols.checked ? (characters += symbols) : "";
+  passwordTxt.value = generatePassword(length.value, characters);
+});
